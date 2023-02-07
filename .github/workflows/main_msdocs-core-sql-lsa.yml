@@ -26,13 +26,13 @@ jobs:
         run: dotnet build --configuration Release
 
       - name: dotnet publish
-        run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/deploycenter
+        run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}
       
       - name: dotnet install entity framework
         run: dotnet tool install -g dotnet-ef
       
       - name: dotnet bundle migration
-        run: dotnet ef migrations bundle -p DotNetCoreSqlDb/DotNetCoreSqlDb.csproj -o ${{env.DOTNET_ROOT}}/deploycenter/migrate
+        run: dotnet ef migrations bundle -p DotNetCoreSqlDb/DotNetCoreSqlDb.csproj -o ${{env.DOTNET_ROOT}}/migrate
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v2
